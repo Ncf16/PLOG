@@ -129,10 +129,58 @@ restriction(NumberList,NumberElement,PosX,PosY,2)
 NumberElement#=NextColElement*2#\/NextColElement#=NumberElement*2.
 \end{verbatim}
 
-\section{Visualização da Solução}
+\section{Representação do Tabuleiro}
 
+Para representar visualmente o tabuleiro recorre-se à utilização do predicado:
+\textit{printKropki(BorderList,NumberList)}:
+
+Este predicado recebe duas listas, a lista que contém as restrições BorderList e a lista que contém os valores do tabuleiro
+
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=0.5\textwidth]{tabuleiro1}
+\caption{Printed Board}
+\end{figure}
+
+Listas para o tabuleiro representado na figure:
+
+BorderList: 
+[[0,1,1,0,0],[0,0,7,8,0],[5,6,7,0,0],[6,7,0,0,0],[1,0,1,1,0]]
+
+NumberList: 
+[[5,3,2,1,4],[3,1,5,4,2],[1,2,4,3,5],[2,4,3,5,1],[4,5,1,2,3]]
+
+
+De forma resumida o printKropki irá imprimir linha a linha o tabuleiro, sendo cada linha por sua vez cada linha dividida em 3 partes e será nessas partes que são consultados os valores das listas.
+Cada valor da BorderList refere-se a este e a sul de cada célula, podendo tomar os seguintes valores:
+\begin{itemize}
+\item 0 : Célula não tem restrição extra 
+\item 1 : A este da célula existe um ponto branco
+\item 2 : A este da célula existe um ponto preto
+\item 3 : A sul da célula existe um ponto branco
+\item 4 : A sul da célula existe um ponto preto
+\item 5 : A este da célula existe um ponto branco e a sul um ponto preto
+\item 6 : Tanto a sul como a este da célula existe um ponto preto
+\item 7 : Tanto a sul como a este da célula existe um ponto branco
+\item 8 - A sul da célula existe um ponto preto e a este um pronto branco
+\end{itemize}
+
+Os valores de NumberList variam de 1 até N, sendo N o tamanho do tabuleiro
+\pagebreak
 \section{Resultados}
-
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=0.5\textwidth]{time}
+\caption{Printed Board}
+\end{figure}
+Tendo em conta o uso de probabilidades na criação dos tabuleiros leva a uma certa falta de confiança nos resultados, no entanto é na mesma possível extrapolar algumas conclusões com os dados fornecidos:
+\begin{itemize}
+\item Tabuleiros até 8x8 são resolviveis em 0s
+\item Os fatores de maior peso na resolução do tabuleiro são o tamanho e a percentagem de números presentes no inicio da resolução
+\item Grande parte dos tabuleiros quando resolviveis são no em menos de um segundo ( É de destacar um caso em prob 0 de 11x11 que demorou 35 minutos)
+\item A partir de uma certa percentagem de preenchimento do tabuleiro a resolver faz com a resolução seja imediata 
+\item  Quanto menor a percentagem de restrições menor é o tempo que o porgrama demora a resolver o puzzle
+\end{itemize}
 \section{Conclusões}
 
 Após a realização deste trabalho é possível extrapolar a preferência na utilização do Prolog para problemas como a resolução de puzzles uma vez que sendo uma linguagem lógica permite, com maior facilidade do que outras linguagens, definir regras de puzzles. É também com confiança que se afirma que o programa desenvolvido é capaz de resolver uma considerável parte dos puzzles do tipo Kropki em tempos aceitáveis (menos que 2 segundos), baseando tal afirmação na rapidez com que o programa resolveu os tabuleiros de teste até ao tamanho 8x8 e de se ter constatado que a considerável parte dos desafios do puzzle Kropki encontrados não possuem dimensões superiores a 7x7.
